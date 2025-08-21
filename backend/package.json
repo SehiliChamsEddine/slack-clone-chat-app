@@ -5,13 +5,14 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
-		"build": "npx tsc" ,
+		"build": "npx tsc",
 		"dev": "nodemon"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"@clerk/express": "^1.7.4",
 		"cors": "^2.8.5",
 		"dotenv": "^17.2.1",
 		"express": "^5.1.0",
@@ -20,6 +21,7 @@
 	"devDependencies": {
 		"@tsconfig/node22": "^22.0.2",
 		"@types/express": "^5.0.3",
+		"@types/mongoose": "^5.11.96",
 		"@types/node": "^24.3.0",
 		"nodemon": "^3.1.10",
 		"typescript": "^5.9.2"
