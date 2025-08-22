@@ -2,10 +2,11 @@
 	"name": "backend",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "dist/server.js",
 	"type": "module",
 	"scripts": {
 		"build": "npx tsc",
+		"start": "node dist/server.js",
 		"dev": "nodemon"
 	},
 	"keywords": [],
