@@ -53,5 +53,5 @@ const deleteUser = inngest.createFunction(
 
 // Add the function to the exported array:
 export const functions = [
-  createUser
+  createUser,deleteUser
 ];
