@@ -14,7 +14,20 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Hello Chams Eddine!');
 });
 
-app.listen(ENV.PORT, async() => {
-  console.log(`Server is running on port ${ENV.PORT}`);
-   connectDB();
-});
+
+const startServer = async () => {
+  await connectDB();
+  if (ENV.NODE_ENV !== 'production') {
+    try {
+      app.listen(ENV.PORT, () => {
+        console.log(`Server is running on port ${ENV.PORT}`);
+      });
+    } catch (error) {
+      console.error("Error starting server:", error);
+    }
+  }
+};
+
+startServer();
+
+export default app;
