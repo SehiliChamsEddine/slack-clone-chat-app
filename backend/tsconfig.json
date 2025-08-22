@@ -4,7 +4,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "allowJs": true,
-    "noEmitOnError": true
+    "noEmitOnError": false
   },
   "include": ["./src/**/*"],
   "exclude": ["./node_modules", "./dist"]
