@@ -1,15 +1,15 @@
+import { clerkMiddleware } from '@clerk/express';
 import express, { Request, Response } from 'express';
 import { serve } from 'inngest/express';
 import connectDB from './config/db.js';
 import { ENV } from './config/env.js';
 import { functions, inngest } from './config/inngest.js';
-
-import { clerkMiddleware } from '@clerk/express';
+import testRouter from './routes/test.routes.js';
 const app = express();
 app.use(express.json());
 app.use("/api/inngest", serve({ client: inngest, functions }));
 app.use(clerkMiddleware());
-
+app.use('/api/test', testRouter);
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello Chams Eddine!');
 });
