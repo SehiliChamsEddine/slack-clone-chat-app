@@ -1,6 +1,7 @@
 import { Inngest } from "inngest";
 import connectDB from "./db.js";
 import User from "../models/User.model.js";
+import { deleteStreamUser, upsertStreamUser } from "./stream.js";
 export const inngest = new Inngest({ id: "slack-video" });
 // Your new function:
 const createUser = inngest.createFunction({ id: "create-user" }, { event: "clerk/user.created" }, async ({ event }) => {
@@ -15,6 +16,12 @@ const createUser = inngest.createFunction({ id: "create-user" }, { event: "clerk
         };
         try {
             await User.create(newUser);
+            await upsertStreamUser({
+                id: user.id,
+                email: user.email_addresses[0]?.email_address || "",
+                name: `${user.first_name || ""} ${user.last_name || ""}`,
+                imageUrl: user.image_url || "",
+            });
         }
         catch (error) {
             console.error("Error creating user:", error);
@@ -30,6 +37,7 @@ const deleteUser = inngest.createFunction({ id: "delete-user" }, { event: "clerk
         const user = event.data;
         try {
             await User.deleteOne({ clerkId: user.id });
+            await deleteStreamUser(user.id);
         }
         catch (error) {
             console.error("Error deleting user:", error);
@@ -39,7 +47,6 @@ const deleteUser = inngest.createFunction({ id: "delete-user" }, { event: "clerk
         console.error("Error connecting to DB:", error);
     }
 });
-// Add the function to the exported array:
 export const functions = [
     createUser, deleteUser
 ];
