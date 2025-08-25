@@ -11,7 +11,7 @@ const useStreamClient = () => {
     const { user } = useUser();
     const [streamClient, setStreamClient] = useState<StreamChat | null>(null);
     const {data:tokenData,error:tokenError,isLoading:tokenLoading} = useQuery(
-        {queryKey:["streamToken"], 
+        {queryKey:["streamToken",user?.id], 
         queryFn: getStreamToken, 
         enabled: !!user,
     });
