@@ -17,8 +17,8 @@ const useStreamClient = () => {
     });
 
     useEffect(() => {
-        if (!user || !tokenData) return;
-
+        if (!user?.id || !tokenData?.token) return;
+        let cancelled = false;
         const initializeStreamClient = async () => {
             try {
                 const { token } = tokenData;
@@ -32,8 +32,8 @@ const useStreamClient = () => {
                         image: user.imageUrl,
                     }, token
                 );
-                setStreamClient(client);
-               
+                if(!cancelled) setStreamClient(client);
+
             } catch (error) {
                 console.error("Error initializing stream client:", error);
                 Sentry.captureException(error,{
@@ -53,13 +53,15 @@ const useStreamClient = () => {
         initializeStreamClient();
 
         return () => {
+            cancelled = true;
             if (streamClient) {
                 streamClient.disconnectUser();
             }
+
         }
 
 
-    }, [user,tokenData,streamClient]);
+    }, [user?.id, tokenData?.token]);
 
     return { streamClient , tokenError , tokenLoading };
 
