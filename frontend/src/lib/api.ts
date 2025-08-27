@@ -1,7 +1,7 @@
 import axiosInstance from "./axios";
 
 export const getStreamToken = async (): Promise<{ token: string }> => {
-  const response = await axiosInstance.get("/api/chat/");
+  const response = await axiosInstance.get("/chat/");
   return response.data;
 
 };
