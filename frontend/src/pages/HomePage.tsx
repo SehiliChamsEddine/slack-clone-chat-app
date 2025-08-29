@@ -71,6 +71,7 @@ const HomePage = () => {
 									options={{ state: true, watch: true }}
 									Preview={CustomChannelPreview}
 									List={CustomChannelList}
+									setActiveChannelOnMount={false}
 								/>
 							</div>
 						</div>

@@ -33,8 +33,13 @@ try {
         members: { $in: [userId] } 
     });
     for (const channel of channels) {
-        await channel.removeMembers([userId]);
-       
+        if( channel.data?.member_count === 2  && channel.id?.includes('user_')) {
+          // remove the channel / delete it no longer valid 
+                await channel.delete();
+        }
+        else{
+              await channel.removeMembers([userId]);
+        }
     }
 } catch (error) {
     console.error("Error deleting Stream user:", error);
