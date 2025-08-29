@@ -4,6 +4,12 @@ const streamClient = StreamChat.getInstance(ENV.STREAM_API_KEY, ENV.STREAM_API_S
 export const upsertStreamUser = async (userData) => {
     try {
         await streamClient.upsertUser(userData);
+        const channels = await streamClient.queryChannels({
+            visibility: 'public'
+        });
+        for (const channel of channels) {
+            await channel.addMembers([userData.id]);
+        }
     }
     catch (error) {
         console.error("Error upserting Stream user:", error);
@@ -12,6 +18,12 @@ export const upsertStreamUser = async (userData) => {
 export const deleteStreamUser = async (userId) => {
     try {
         await streamClient.deleteUser(userId);
+        const channels = await streamClient.queryChannels({
+            members: { $in: [userId] }
+        });
+        for (const channel of channels) {
+            await channel.removeMembers([userId]);
+        }
     }
     catch (error) {
         console.error("Error deleting Stream user:", error);

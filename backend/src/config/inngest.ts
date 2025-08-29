@@ -30,6 +30,8 @@ const createUser = inngest.createFunction(
                     name: `${user.first_name || ""} ${user.last_name || ""}`,
                     imageUrl: user.image_url || "",
                 });
+               
+
             } catch (error) {
                 console.error("Error creating user:", error);
             }

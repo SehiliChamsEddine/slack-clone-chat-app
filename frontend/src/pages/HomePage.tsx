@@ -1,40 +1,33 @@
 import { UserButton } from '@clerk/clerk-react';
-import { PlusIcon } from 'lucide-react';
+import { HashIcon, PlusIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { Channel as StreamChannel } from 'stream-chat';
+
+import { Channel as StreamChannel, type ChannelFilters } from 'stream-chat';
 import {
 	Channel,
 	ChannelHeader,
 	ChannelList,
+	ChannelPreview,
 	Chat,
 	MessageInput,
 	MessageList,
 	Thread,
 	Window,
 } from 'stream-chat-react';
+
 import CreateChannelModal from '../components/CreateChannelModal';
+import CustomChannelList from '../components/CustomChannelList';
+import CustomChannelPreview from '../components/CustomChannelPreview';
 import PageLoader from '../components/PageLoader';
 import useStreamClient from '../hooks/useStreamClient';
 import '../styles/stream-chat-theme.css';
+
 const HomePage = () => {
-	const [activeChannel, setActiveChannel] = useState<StreamChannel | undefined>(
-		undefined
-	);
-	const [searchParams, setSearchParams] = useSearchParams();
 	const { streamClient, tokenError, tokenLoading } = useStreamClient();
 	const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
-	useEffect(() => {
-		if (!streamClient) return;
-		const channelId = searchParams.get('channelId');
-		if (!channelId) return;
-		const channel = streamClient.channel('messaging', channelId);
-
-		setActiveChannel(channel);
-	}, [streamClient, searchParams]);
-
-	if (!streamClient || tokenLoading) return <PageLoader />;
+	if (!streamClient?.user || tokenLoading) return <PageLoader />;
 
 	if (tokenError) return <p>Something went wrong</p>;
 
@@ -73,12 +66,18 @@ const HomePage = () => {
 									</button>
 								</div>
 								{/* Channels List */}
+								<ChannelList
+									filters={{ members: { $in: [streamClient.user.id] } }}
+									options={{ state: true, watch: true }}
+									Preview={CustomChannelPreview}
+									List={CustomChannelList}
+								/>
 							</div>
 						</div>
 					</div>
 					{/* Right Container */}
 					<div className="chat-main">
-						<Channel channel={activeChannel}>
+						<Channel>
 							<Window>
 								<ChannelHeader />
 								<MessageList />
