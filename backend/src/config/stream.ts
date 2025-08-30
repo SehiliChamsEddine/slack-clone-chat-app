@@ -35,7 +35,7 @@ try {
     for (const channel of channels) {
         if( channel.data?.member_count === 2  && channel.id?.includes('user_')) {
           // remove the channel / delete it no longer valid 
-                await channel.delete();
+                await streamClient.deleteChannels([channel.id],{hard_delete:true})
         }
         else{
               await channel.removeMembers([userId]);

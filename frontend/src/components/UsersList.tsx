@@ -18,7 +18,7 @@ const UsersList = ({
 	const fetchUsers = useCallback(async () => {
 		if (!streamClient?.user) return;
 
-		const response = await streamClient.queryUsers({});
+		const response = await streamClient.queryUsers({}, {}, { presence: true });
 		const users = response.users.filter(
 			(user) => user.id !== streamClient.user?.id
 		);
@@ -112,7 +112,7 @@ const UsersList = ({
 								{user?.name || user.id}
 							</span>
 							{unreadCount > 0 && (
-								<span className="flex items-center justify-center size-4 text-red-500  rounded-full text-xs">
+								<span className="flex items-center justify-center size-4 bg-red-500  rounded-full text-xs text-white">
 									{unreadCount}
 								</span>
 							)}
