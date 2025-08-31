@@ -1,14 +1,10 @@
 import { UserButton } from '@clerk/clerk-react';
-import { HashIcon, PlusIcon } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router';
 
-import { Channel as StreamChannel, type ChannelFilters } from 'stream-chat';
+import { useState } from 'react';
+
 import {
 	Channel,
-	ChannelHeader,
 	ChannelList,
-	ChannelPreview,
 	Chat,
 	MessageInput,
 	MessageList,
@@ -16,7 +12,9 @@ import {
 	Window,
 } from 'stream-chat-react';
 
+import { PlusIcon } from 'lucide-react';
 import CreateChannelModal from '../components/CreateChannelModal';
+import CustomChannelHeader from '../components/CustomChannelHeader';
 import CustomChannelList from '../components/CustomChannelList';
 import CustomChannelPreview from '../components/CustomChannelPreview';
 import PageLoader from '../components/PageLoader';
@@ -80,7 +78,7 @@ const HomePage = () => {
 					<div className="chat-main">
 						<Channel>
 							<Window>
-								<ChannelHeader />
+								<CustomChannelHeader />
 								<MessageList />
 								<MessageInput />
 							</Window>

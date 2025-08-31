@@ -42,7 +42,7 @@ const CustomChannelPreview: React.ComponentType<
 				{channel.data?.name}
 			</span>
 			{unReadCount > 0 && (
-				<span className="flex items-center justify-center text-xs rounded-full size-4 ml-4 text-red-500">
+				<span className="flex items-center justify-center text-xs rounded-full size-4 ml-4 bg-red-500 text-white">
 					{unReadCount}
 				</span>
 			)}
