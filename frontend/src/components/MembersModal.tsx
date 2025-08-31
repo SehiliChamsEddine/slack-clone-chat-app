@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { CircleIcon, XIcon } from 'lucide-react';
+import { XIcon } from 'lucide-react';
 import type { ChannelMemberResponse } from 'stream-chat';
 
 type MembersModalProps = {

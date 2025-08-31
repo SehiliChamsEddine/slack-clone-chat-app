@@ -25,6 +25,8 @@ declare module 'stream-chat' {
 
 const CreateChannelModal = ({ onClose }: CreateChannelModalProps) => {
 	const { client, setActiveChannel } = useChatContext();
+
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [users, setUsers] = useState<UserResponse[]>([]);
 	const [isUsersLoading, setIsUsersLoading] = useState(false);

@@ -27,11 +27,10 @@ const CallPage = () => {
 	const [isConnecting, setIsConnecting] = useState<boolean>(true);
 	const [call, setCall] = useState<Call | undefined>(undefined);
 
-	const {
-		data: token,
-		isLoading,
-		error,
-	} = useQuery({ queryKey: ['streamToken'], queryFn: getStreamToken });
+	const { data: token } = useQuery({
+		queryKey: ['streamToken'],
+		queryFn: getStreamToken,
+	});
 	const { user, isLoaded } = useUser();
 
 	useEffect(() => {

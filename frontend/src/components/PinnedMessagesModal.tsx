@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { XIcon } from 'lucide-react';
-import type { ChannelmessageResponse, LocalMessage } from 'stream-chat';
+import type { LocalMessage } from 'stream-chat';
 
 type PinnedMessagesModalProps = {
 	messages: LocalMessage[];

@@ -65,6 +65,7 @@ const HomePage = () => {
 								</div>
 								{/* Channels List */}
 								<ChannelList
+									//@ts-expect-error members provided structure is valid
 									filters={{ members: { $in: [streamClient.user.id] } }}
 									options={{ state: true, watch: true }}
 									Preview={CustomChannelPreview}

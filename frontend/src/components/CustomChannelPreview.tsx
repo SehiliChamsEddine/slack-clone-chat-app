@@ -11,6 +11,7 @@ const CustomChannelPreview: React.ComponentType<
 	ChannelPreviewUIComponentProps
 > = (probs) => {
 	const { channel, setActiveChannel, activeChannel } = probs;
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [searchParams, setSearchParams] = useSearchParams();
 	const { client } = useChatContext();
 

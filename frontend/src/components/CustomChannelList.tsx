@@ -1,5 +1,5 @@
 import { HashIcon, UsersIcon } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSearchParams } from 'react-router';
 import {
 	useChatContext,
@@ -14,6 +14,7 @@ const CustomChannelList: React.ComponentType<
 
 	const { client: streamClient, setActiveChannel, channel } = useChatContext();
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	useEffect(() => {

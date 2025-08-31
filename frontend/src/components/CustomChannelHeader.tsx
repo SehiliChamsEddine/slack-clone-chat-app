@@ -1,18 +1,7 @@
-import {
-	HashIcon,
-	LockIcon,
-	PiIcon,
-	Pin,
-	UsersIcon,
-	VideoIcon,
-} from 'lucide-react';
+import { HashIcon, LockIcon, Pin, UsersIcon, VideoIcon } from 'lucide-react';
 import { useState } from 'react';
 import type { LocalMessage } from 'stream-chat';
-import {
-	PinIcon,
-	useChannelStateContext,
-	useChatContext,
-} from 'stream-chat-react';
+import { useChannelStateContext, useChatContext } from 'stream-chat-react';
 import InviteUsersModal from './InviteUsersModal';
 import MembersModal from './MembersModal';
 import PinnedMessagesModal from './PinnedMessagesModal';

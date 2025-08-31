@@ -2,7 +2,7 @@ import * as Sentry from '@sentry/react';
 import { useQuery } from '@tanstack/react-query';
 import clsx from 'clsx';
 import { CircleIcon } from 'lucide-react';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import { useSearchParams } from 'react-router';
 import type { Channel, StreamChat } from 'stream-chat';
 
@@ -14,6 +14,7 @@ const UsersList = ({
 	streamClient: StreamChat;
 	setActiveChannel: (channel: Channel) => void;
 }) => {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [searchParams, setSearchParams] = useSearchParams();
 	const fetchUsers = useCallback(async () => {
 		if (!streamClient?.user) return;
