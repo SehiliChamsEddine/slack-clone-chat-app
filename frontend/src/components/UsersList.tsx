@@ -20,8 +20,10 @@ const UsersList = ({
 
 		const response = await streamClient.queryUsers({}, {}, { presence: true });
 		const users = response.users.filter(
-			(user) => user.id !== streamClient.user?.id
+			(user) =>
+				user.id !== streamClient.user?.id && !user.id.startsWith('recording-')
 		);
+
 		return users;
 	}, [streamClient]);
 	const {
