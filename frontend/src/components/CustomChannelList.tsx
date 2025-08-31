@@ -14,8 +14,7 @@ const CustomChannelList: React.ComponentType<
 
 	const { client: streamClient, setActiveChannel, channel } = useChatContext();
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const [searchParams, setSearchParams] = useSearchParams();
+	const [searchParams] = useSearchParams();
 
 	useEffect(() => {
 		if (!streamClient?.user || loading) return;

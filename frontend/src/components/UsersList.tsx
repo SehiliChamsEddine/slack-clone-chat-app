@@ -14,8 +14,7 @@ const UsersList = ({
 	streamClient: StreamChat;
 	setActiveChannel: (channel: Channel) => void;
 }) => {
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const [searchParams, setSearchParams] = useSearchParams();
+	const [, setSearchParams] = useSearchParams();
 	const fetchUsers = useCallback(async () => {
 		if (!streamClient?.user) return;
 
