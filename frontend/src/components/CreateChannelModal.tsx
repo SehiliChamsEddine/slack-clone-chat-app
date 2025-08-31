@@ -47,11 +47,10 @@ const CreateChannelModal = ({ onClose }: CreateChannelModalProps) => {
 					{ limit: 100 }
 				);
 				const users = response.users.filter(
-					(user) => user.id !== client?.user?.id
+					(user) =>
+						user.id !== client?.user?.id && !user.id.startsWith('recording-')
 				);
-				console.log('fetched users', response.users);
-				console.log('filtered users ', users);
-				console.log('client user ', client?.user);
+
 				setUsers(users);
 			} catch (error) {
 				console.error('Error fetching users:', error as Error);
